@@ -48,5 +48,23 @@
 	    return 1;
 	}
 
-### An Optimized Approach ###
-&nbsp;&nbsp;The previous method tried every attempt to find the longest substring without repeating characters. It's obvious that some attempts are not necessary. We wonder if there are some possibility to avoid so much iteration and finish all the tasks in a single loop. The answer is, yes. For substring *S[i, j-1]*, if *S[j]* exists in *S[i, j-1]*,
+### An Optimized Approach (wanghan328's version)###
+&nbsp;&nbsp;The previous method tried every attempt to find the longest substring without repeating characters. It's obvious that some attempts are not necessary. We wonder if there are some possibility to avoid so much iteration and finish all the tasks in a single loop. The answer is, yes. For substring *S[i, j-1]*, if *S[j]* exists in *S[i, j-1]*, we don't have to shift *i* little by little, We can just let *i* be *j+1* and start the whole procedure again. The key to this approach is also the way of test if *S[j]* exists in *S[i, j-1]*. The tricky design is we have a map whose key is the characters' ASCII code and value is the index of this character in the string *S*. Each time, we scan a character and test if the index of it right now is bigger than the previous stored one. If it do bigger, we can make sure that this time, *S[j]* is duplicate in the substring *S[i, j]*. And we can move i to the *index[S[j]]*.<br/>
+&nbsp;&nbsp;In a word. We use a map *index[(range of the characters ASCII)]* to indicate the maximum *index+1* of a certain character. The code followed is implementation in C.
+
+	#define    LEN          (256)
+	#define    MAX(a, b)    ((a) > (b)) ? (a) : (b)
+	
+	int lengthOfLongestSubstring(char* s) {
+	    int index[LEN] = {0};
+	    int max = 0;
+	    int i, j;
+	    
+	    for (i = 0, j = 0; s[j]; j++) {
+	        i = MAX(index[s[j]], i);
+	        max = MAX((j - i + 1), max);
+	        index[s[j]] = j + 1;
+	    }
+	    
+	    return max;
+	}
