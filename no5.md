@@ -15,7 +15,6 @@
 &nbsp;&nbsp;After read the problem, I decided to use DP method to solve it. why? Because it can divide the problem into sub-problems and each sub-problems are relevant which is suitable for DP.<br/>
 &nbsp;&nbsp;First of all, each element in the string itself is a palindromic substring of the whole string and the length of it is *1*. This is obvious. Second, if the string *s[i] == s[i+1]* then the length of *s[i,i+1]* is 2. Finally, we can test if string *s* contains a substring *s'* whole length is set from 3 to the length of string *s*. For each length, we shift *s'* from the beginning to the end. And for each *s'*, we test if *s[i] == s[j]* and substring *s[i+1,j-1]* is already a palindromic string.<br/>
 &nbsp;&nbsp;The key to dynamic programming is the state transition formula. In this problem, we use the value of *matrix[i][j]* to represent if *s[i,j]* is a palindromic string. In this way don't have to calculate the if substring *s[i+1,j-1]* is a palindromic string every time. So the state transition formula is shown above.
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 $$ matrix[i][j]=\\left\\{
 \\begin{aligned}
