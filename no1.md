@@ -17,7 +17,8 @@
 
 &nbsp;&nbsp;This problem is simple, we can just add every 2 elements in this array and return the 2 with the sum of the target. The code below show the whole process.
 
-````c	/**
+````c	
+    /**
 	 * Note: The returned array must be malloced, assume caller calls free().
 	 */
 	int* twoSum(int* nums, int numsSize, int target) {
