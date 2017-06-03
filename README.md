@@ -1,2 +1,2 @@
-# leetcode
-Leetcode problems
+# leetcode in C
+Leetcode problems in C
